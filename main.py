@@ -5,21 +5,23 @@ from datetime import date
 
 app = Flask(__name__)
 
-validResourcePaths:set = {"index/index.js", "index/style.css"}
+validResourcePaths:set = {"page1/index.js", "page1/style.css", "page1/data.js"
+                            "page2/index.js", "page2/style.css", "page2/data.js"}
 
 @app.route('/')
 def landingPage() -> str:
     # open file w/ questions, get question for today
-    question = json.load(open("questions.json", "r"))[date.today()]
-    return render_template('page1/index.html', question = question)
+    #question = json.load(open("questions.json", "r"))[date.today()]
+    #return render_template('page1/index.html', question = question)
+    return render_template('page1/index.html')
     
 
 @app.route('/resource/<path:path>')
 def resource(path: str) -> str:
     if path in validResourcePaths:
-        return render_template(path)
+        resourceFile =  render_template(path)
     else:
-        return render_template("noResource/noResource.html")
+        resourceFile =  render_template("noResource/noResource.html")
     
     return resourceFile
 
