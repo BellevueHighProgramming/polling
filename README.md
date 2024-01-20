@@ -1,4 +1,5 @@
 # To avoid merge conflicts and to keep our code modular, please read
+# Create your own branch when working on features
 
 ## Page 1
 Get questions by calling getQuestion, getNumberOfOptions,listOfOptions from data.js<br>
