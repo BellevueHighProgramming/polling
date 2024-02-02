@@ -25,6 +25,20 @@ def resource(path: str) -> str:
     
     return resourceFile
 
+@app.route('/handle_get', methods=['GET'])
+def handle_get():
+    if request.method == 'GET':
+        type = request.args['type']
+        if type == "question":
+            return "How likely is 1+1 = 3"
+        if type == "answers":
+            return json.dumps({"A": "25%", "B": "50%", "C": "100%"})
+                
+    else:
+        return render_template("noResource/noResource.html")
+ 
+
+
 
 @app.route('/<path:path>')
 def catchAll(path: str) -> redirect:
