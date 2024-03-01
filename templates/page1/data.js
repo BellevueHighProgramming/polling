@@ -2,18 +2,19 @@ function getNumberOfOptions(){
     return 0;
 }
 
-function getQuestion(){
-    new Request("/api", {
-        method: "GET",
-        body: '{"type": "question"}',
-    }).then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong on API server!");
-        }
-    })
+async function getQuestion(){
 
+    const response = await fetch("/api", 
+    {
+        method: "GET",
+        args: {type: "question"}
+    });
+    const result = await response.json();
+    alert("here");
+
+    response.then((data)=>{
+        alert(data);
+    });
     return "im a question"
 }
 
@@ -27,4 +28,4 @@ function listOfOptions(){
 }
 
 
-alert(getQuestion());
+getQuestion();

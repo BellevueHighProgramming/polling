@@ -29,21 +29,23 @@ def resource(path: str) -> str:
     
     return resourceFile
 
-@app.route('/api', methods=['GET'])
+@app.route('/api', methods=['GET', 'POST'])
 def api():
-    print("here")
-    if request.method == 'GET':
+    if str(request.method) == str("GET"):
         type = request.args['type']
+        print("NULL INVALID")
         if type == "question":
+            print('here')
             return "How likely is 1+1 = 3"
         elif type == "answers":
             return json.dumps({"A": "Tetris", "B": "Beer", "C": "Chicken"})
         elif type == "pollingType":
             #Calling pollingDB to obtain polling data
             return json.dumps({"A": "25%", "B": "50%", "C": "10%"})
-
-        
-    elif request.method == 'POST':
+        else:
+            print("NULL INVALID")
+            return "NULL INVALID GET" 
+    elif str(request.method) == "POST":
         type = request.args['type']
         if type == "result":
             data = request.args['data']   
@@ -51,6 +53,7 @@ def api():
     
                 
     else:
+        print('here3')
         return render_template("noResource/noResource.html")
  
 
