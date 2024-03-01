@@ -5,8 +5,9 @@ from datetime import date
 
 app = Flask(__name__)
 
-validResourcePaths:set = {"page1/index.js", "page1/style.css", "page1/data.js"
+validResourcePaths:set = {"page1/index.js", "page1/style.css", "page1/data.js",
                             "page2/index.js", "page2/style.css", "page2/data.js"}
+#page1/data.js
 
 @app.route('/')
 def landingPage() -> str:
@@ -30,6 +31,7 @@ def resource(path: str) -> str:
 
 @app.route('/api', methods=['GET'])
 def api():
+    print("here")
     if request.method == 'GET':
         type = request.args['type']
         if type == "question":
